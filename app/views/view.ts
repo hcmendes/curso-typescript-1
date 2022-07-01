@@ -1,4 +1,4 @@
-export class View {
+export class View<T> {
 
   protected elemento: HTMLElement;
 
@@ -6,4 +6,11 @@ export class View {
     this.elemento = document.querySelector(seletor);
   }
 
+  template(model: T): string {
+    throw Error('Classe filha precisa implementar template()');
+  }
+
+  update(model: T): void {
+    this.elemento.innerHTML = this.template(model);
+  }
 }
